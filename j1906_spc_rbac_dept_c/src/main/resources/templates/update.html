@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<body>
+    <form>
+        deptno:<input type="text" value="deptno" placeholder="请输入部门id"/>
+        dname:<input type="text" name="dname" placeholder="请输入部门名称"/>
+        loc：<input type="text" name="loc" placeholder="请输入所在地"/>
+        <input type="button" value="确认修改" onclick="fun()">
+    </form>
+<script>
+    function fun() {
+        var dept={};
+        dept.deptno=$("form[name='deptno']").val();
+        dept.dname=$("form [name='dname']").val();
+        dept.loc=$("form [name='loc']").val();
+        $.ajax({
+           url:"/update",
+           type:"PUT",
+            data:JSON.stringify(dept),
+            success:function (data) {
+                alert("恭喜你！修改成功！！！");
+            },
+            error:function (error) {
+                alert("对不起！修改失败！！！");
+            }
+
+        });
+    }
+</script>
+</body>
+</html>
